@@ -55,9 +55,9 @@ class TodoController extends Controller
             }
         }else{
             if($tag_id==""){
-                $todos = Todo::where('user_id', $user->id)->where('content', $content)->get();
+                $todos = Todo::where('user_id', $user->id)->where('content','like', "%$content%")->get();
             } else {
-                $todos = Todo::where('user_id', $user->id)->where('tag_id',$tag_id)->where('content', $content)->get();
+                $todos = Todo::where('user_id', $user->id)->where('tag_id',$tag_id)->where('content','like', "%$content%")->get();
             }
         }
         return view('find', ['todos'=>$todos, 'user'=>$user,'tags'=>$tags]);
